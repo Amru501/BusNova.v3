@@ -35,7 +35,6 @@ export async function PATCH(
     );
     return NextResponse.json({ success: true });
   } catch (err) {
-    console.error("Update pass error:", err);
     return NextResponse.json({ error: "Failed to update pass" }, { status: 500 });
   }
 }

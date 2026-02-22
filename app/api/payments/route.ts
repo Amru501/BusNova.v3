@@ -37,7 +37,6 @@ export async function GET() {
     );
     return NextResponse.json({ payments });
   } catch (err) {
-    console.error("Payments list error:", err);
     return NextResponse.json({ error: "Failed to fetch payments" }, { status: 500 });
   }
 }
@@ -82,7 +81,6 @@ export async function POST(request: NextRequest) {
       redirect: "/student",
     });
   } catch (err) {
-    console.error("Payment error:", err);
     return NextResponse.json({ error: "Payment failed" }, { status: 500 });
   }
 }

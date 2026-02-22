@@ -7,7 +7,9 @@ import { createToken, setAuthCookie } from "@/lib/auth";
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { name, email, phone, password, role, admin_type } = body;
+    const { name, email, phone, password, role, admin_type, security_key } = body;
+
+    const adminSecurityKey = process.env.ADMIN_SECURITY_KEY ?? "Nova";
 
     if (!name || !email || !password || !role) {
       return NextResponse.json(
@@ -21,6 +23,12 @@ export async function POST(request: NextRequest) {
     }
 
     if (role === "admin") {
+      if (String(security_key ?? "").trim() !== adminSecurityKey) {
+        return NextResponse.json(
+          { error: "Invalid admin security key" },
+          { status: 403 }
+        );
+      }
       const validAdminType = ["checking", "driver", "administrator"].includes(admin_type);
       if (!validAdminType) {
         return NextResponse.json(
@@ -73,7 +81,6 @@ export async function POST(request: NextRequest) {
       user: { id: userId, name, email, phone: phone ?? null, role },
     });
   } catch (err) {
-    console.error("Register error:", err);
     const message =
       process.env.NODE_ENV === "development" && err instanceof Error
         ? err.message

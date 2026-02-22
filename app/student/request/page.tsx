@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { Card, CardHeader, CardContent } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
+import ShinyText from "@/components/ShinyText";
 import { Select } from "@/components/ui/Select";
 
 type Route = {
@@ -85,7 +86,18 @@ export default function RequestPassPage() {
       <Link href="/student" className="inline-block text-zinc-400 hover:text-white">
         ← Dashboard
       </Link>
-      <h1 className="text-2xl font-bold text-white">Request New Pass</h1>
+      <h1 className="text-2xl font-bold">
+        <ShinyText
+          text="Request New Pass"
+          color="#b5b5b5"
+          shineColor="#ffffff"
+          speed={2.5}
+          spread={120}
+          yoyo
+          pauseOnHover
+          className="text-2xl font-bold"
+        />
+      </h1>
 
       <Card className="max-w-md">
         <CardHeader>

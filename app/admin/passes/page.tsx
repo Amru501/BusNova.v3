@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Card, CardHeader, CardContent } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
+import ShinyText from "@/components/ShinyText";
 
 type Pass = {
   id: number;
@@ -51,7 +52,18 @@ export default function AdminPassesPage() {
       <Link href="/admin" className="inline-block text-zinc-400 hover:text-white">
         ← Dashboard
       </Link>
-      <h1 className="text-2xl font-bold text-white">All Passes</h1>
+      <h1 className="text-2xl font-bold">
+        <ShinyText
+          text="All Passes"
+          color="#b5b5b5"
+          shineColor="#ffffff"
+          speed={2.5}
+          spread={120}
+          yoyo
+          pauseOnHover
+          className="text-2xl font-bold"
+        />
+      </h1>
 
       <Card>
         <CardHeader>

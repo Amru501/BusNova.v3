@@ -6,6 +6,7 @@ import { Card, CardHeader, CardContent } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { Select } from "@/components/ui/Select";
+import ShinyText from "@/components/ShinyText";
 
 type Route = { id: number; name: string; daily_price: number; weekly_price: number };
 type Bus = { id: number; bus_number: string; route_id: number; route_name: string };
@@ -70,7 +71,18 @@ export default function AddBusPage() {
       <Link href="/admin" className="inline-block text-zinc-400 hover:text-white">
         ← Dashboard
       </Link>
-      <h1 className="text-2xl font-bold text-white">Add Bus</h1>
+      <h1 className="text-2xl font-bold">
+        <ShinyText
+          text="Add Bus"
+          color="#b5b5b5"
+          shineColor="#ffffff"
+          speed={2.5}
+          spread={120}
+          yoyo
+          pauseOnHover
+          className="text-2xl font-bold"
+        />
+      </h1>
 
       <Card className="max-w-md">
         <CardHeader>

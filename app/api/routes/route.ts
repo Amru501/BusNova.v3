@@ -23,7 +23,6 @@ export async function GET() {
     );
     return NextResponse.json({ routes });
   } catch (err) {
-    console.error("Routes list error:", err);
     return NextResponse.json({ error: "Failed to fetch routes" }, { status: 500 });
   }
 }
@@ -56,7 +55,6 @@ export async function POST(request: NextRequest) {
     );
     return NextResponse.json({ success: true });
   } catch (err) {
-    console.error("Add route error:", err);
     return NextResponse.json({ error: "Failed to add route" }, { status: 500 });
   }
 }

@@ -18,6 +18,7 @@ function RegisterForm() {
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const [adminType, setAdminType] = useState<"checking" | "driver" | "administrator">("administrator");
+  const [securityKey, setSecurityKey] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -35,7 +36,7 @@ function RegisterForm() {
           phone: phone || undefined,
           password,
           role,
-          ...(role === "admin" && { admin_type: adminType }),
+          ...(role === "admin" && { admin_type: adminType, security_key: securityKey }),
         }),
       });
       const data = await res.json();
@@ -54,9 +55,14 @@ function RegisterForm() {
 
   return (
     <div className="min-h-screen flex flex-col px-4 py-12">
-      <Link href="/" className="inline-block text-zinc-400 hover:text-white">
-        ← Back to home
-      </Link>
+      <span className="inline-block">
+        <Link
+          href="/"
+          className="back-to-home-box text-zinc-400 hover:text-white transition-colors"
+        >
+          ← Back to home
+        </Link>
+      </span>
       <div className="flex flex-1 flex-col items-center justify-center">
         <div className="auth-card w-full max-w-sm p-8">
           <h1 className="text-2xl font-bold text-white mb-6 text-center">{title}</h1>
@@ -101,20 +107,36 @@ function RegisterForm() {
             />
           </div>
           {role === "admin" && (
-            <div>
-              <label htmlFor="admin_type" className="mb-1.5 block text-sm font-medium text-zinc-400">
-                Admin type
-              </label>
-              <Select
-                id="admin_type"
-                value={adminType}
-                onChange={(e) => setAdminType(e.target.value as "checking" | "driver" | "administrator")}
-              >
-                <option value="administrator">Administrator</option>
-                <option value="checking">Checking</option>
-                <option value="driver">Driver</option>
-              </Select>
-            </div>
+            <>
+              <div>
+                <label htmlFor="security_key" className="mb-1.5 block text-sm font-medium text-zinc-400">
+                  Admin security key
+                </label>
+                <Input
+                  id="security_key"
+                  type="password"
+                  value={securityKey}
+                  onChange={(e) => setSecurityKey(e.target.value)}
+                  placeholder="Enter security key"
+                  required={role === "admin"}
+                  autoComplete="off"
+                />
+              </div>
+              <div>
+                <label htmlFor="admin_type" className="mb-1.5 block text-sm font-medium text-zinc-400">
+                  Admin type
+                </label>
+                <Select
+                  id="admin_type"
+                  value={adminType}
+                  onChange={(e) => setAdminType(e.target.value as "checking" | "driver" | "administrator")}
+                >
+                  <option value="administrator">Administrator</option>
+                  <option value="checking">Checking</option>
+                  <option value="driver">Driver</option>
+                </Select>
+              </div>
+            </>
           )}
           <div>
             <label htmlFor="password" className="mb-1.5 block text-sm font-medium text-zinc-400">

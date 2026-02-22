@@ -43,9 +43,14 @@ function LoginForm() {
 
   return (
     <div className="min-h-screen flex flex-col px-4">
-      <Link href="/" className="inline-block pt-6 text-zinc-400 hover:text-white">
-        ← Back to home
-      </Link>
+      <span className="inline-block pt-6">
+        <Link
+          href="/"
+          className="back-to-home-box text-zinc-400 hover:text-white transition-colors"
+        >
+          ← Back to home
+        </Link>
+      </span>
       <div className="flex flex-1 flex-col items-center justify-center">
         <div className="auth-card w-full max-w-sm p-8">
           <h1 className="text-2xl font-bold text-white mb-6 text-center">{title}</h1>

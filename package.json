@@ -17,6 +17,7 @@
     "jose": "^5.9.6",
     "jsonwebtoken": "^9.0.3",
     "lucide-react": "^0.575.0",
+    "motion": "^12.34.3",
     "mysql2": "^3.17.4",
     "next": "16.1.6",
     "radix-ui": "^1.4.3",

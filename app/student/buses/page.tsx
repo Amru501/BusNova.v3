@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Card, CardHeader, CardContent } from "@/components/ui/Card";
+import ShinyText from "@/components/ShinyText";
 
 type Bus = { id: number; bus_number: string; route_id: number; route_name: string };
 
@@ -24,7 +25,18 @@ export default function ViewBusesPage() {
       <Link href="/student" className="inline-block text-zinc-400 hover:text-white">
         ← Dashboard
       </Link>
-      <h1 className="text-2xl font-bold text-white">All Buses</h1>
+      <h1 className="text-2xl font-bold">
+        <ShinyText
+          text="All Buses"
+          color="#b5b5b5"
+          shineColor="#ffffff"
+          speed={2.5}
+          spread={120}
+          yoyo
+          pauseOnHover
+          className="text-2xl font-bold"
+        />
+      </h1>
 
       <Card>
         <CardHeader>

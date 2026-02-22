@@ -48,7 +48,6 @@ export async function GET() {
     );
     return NextResponse.json({ passes });
   } catch (err) {
-    console.error("Passes list error:", err);
     return NextResponse.json({ error: "Failed to fetch passes" }, { status: 500 });
   }
 }
@@ -91,7 +90,6 @@ export async function POST(request: NextRequest) {
     const passId = (result as ResultSetHeader).insertId;
     return NextResponse.json({ success: true, pass_id: passId });
   } catch (err) {
-    console.error("Create pass error:", err);
     return NextResponse.json({ error: "Failed to create pass" }, { status: 500 });
   }
 }

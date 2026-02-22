@@ -102,6 +102,15 @@ body::before {
   z-index: -1;
 }
 
+/* Back to home link: small grey box matching background */
+.back-to-home-box {
+  display: inline-block;
+  padding: 0.5rem 0.875rem;
+  border-radius: 0.75rem;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+}
+
 /* Auth pages: form block matching background, no hover effect */
 .auth-card {
   background: var(--card-bg);
@@ -109,6 +118,49 @@ body::before {
   border-radius: 1rem;
   box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
   backdrop-filter: blur(12px);
+}
+
+/* Dashboard: solid blocks with 3D shadow matching background, twine interconnects */
+.dashboard-blocks {
+  position: relative;
+  padding: 1.5rem;
+}
+
+.dashboard-twine {
+  position: absolute;
+  inset: -4px;
+  pointer-events: none;
+  border-radius: 1.25rem;
+  border: 3px solid rgba(139, 115, 85, 0.7);
+  box-shadow:
+    inset 0 0 0 1px rgba(160, 130, 95, 0.4),
+    0 0 0 1px rgba(80, 60, 40, 0.3);
+}
+
+.dashboard-twine::before {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border-radius: 1.5rem;
+  border: 1px dashed rgba(139, 115, 85, 0.35);
+  pointer-events: none;
+}
+
+.dashboard-card {
+  background: rgba(28, 28, 32, 0.98) !important;
+  border: 1px solid rgba(63, 63, 70, 0.7) !important;
+  box-shadow:
+    0 12px 28px rgba(0, 0, 0, 0.45),
+    0 6px 14px rgba(25, 12, 12, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04) !important;
+  backdrop-filter: none;
+}
+
+.dashboard-card:hover {
+  box-shadow:
+    0 16px 36px rgba(0, 0, 0, 0.5),
+    0 8px 18px rgba(25, 12, 12, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06) !important;
 }
 
 .dark {

@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Card, CardHeader, CardContent } from "@/components/ui/Card";
+import ShinyText from "@/components/ShinyText";
 
 type Payment = {
   id: number;
@@ -35,7 +36,18 @@ export default function AdminPaymentsPage() {
       <Link href="/admin" className="inline-block text-zinc-400 hover:text-white">
         ← Dashboard
       </Link>
-      <h1 className="text-2xl font-bold text-white">All Payments</h1>
+      <h1 className="text-2xl font-bold">
+        <ShinyText
+          text="All Payments"
+          color="#b5b5b5"
+          shineColor="#ffffff"
+          speed={2.5}
+          spread={120}
+          yoyo
+          pauseOnHover
+          className="text-2xl font-bold"
+        />
+      </h1>
 
       <Card>
         <CardHeader>

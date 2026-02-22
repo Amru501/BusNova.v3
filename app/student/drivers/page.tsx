@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Card, CardHeader, CardContent } from "@/components/ui/Card";
+import ShinyText from "@/components/ShinyText";
 
 type Driver = { id: number; name: string; phone: string | null };
 
@@ -24,7 +25,18 @@ export default function DriversPage() {
       <Link href="/student" className="inline-block text-zinc-400 hover:text-white">
         ← Dashboard
       </Link>
-      <h1 className="text-2xl font-bold text-white">Drivers</h1>
+      <h1 className="text-2xl font-bold">
+        <ShinyText
+          text="Drivers"
+          color="#b5b5b5"
+          shineColor="#ffffff"
+          speed={2.5}
+          spread={120}
+          yoyo
+          pauseOnHover
+          className="text-2xl font-bold"
+        />
+      </h1>
 
       <div className="flex min-h-[40vh] flex-col items-center justify-center">
         {loading ? (

@@ -1,36 +1,56 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Bus Pass Management System
 
-## Getting Started
+A full-stack web app for managing bus passes, routes, payments, and approvals. **Student** and **Admin** roles with separate dashboards, JWT auth, and MySQL.
 
-First, run the development server:
+## Features
+
+- **Students:** Request passes (daily/weekly), view my pass, pay (simulated), view buses & drivers
+- **Admins:** Add routes (set prices), add buses, approve/reject passes, view payments
+- **Auth:** Login, register (admin registration requires security key)
+- **UI:** Dark theme, animated headings, dashboard cards with spotlight effect
+
+## Prerequisites
+
+- **Node.js** 18+
+- **MySQL** (local or remote)
+
+## Quick Start
 
 ```bash
+# Install dependencies
+npm install
+
+# Database: create DB and run schema
+mysql -u root -p -e "CREATE DATABASE IF NOT EXISTS bus_pass;"
+mysql -u root -p bus_pass < scripts/schema.sql
+
+# Environment: create .env.local (see below)
+# Then run:
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open **http://localhost:3000**. Register as student, or register as admin using security key **Nova** (or set `ADMIN_SECURITY_KEY` in `.env.local`).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Environment (.env.local)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Variable            | Description                    | Default   |
+|---------------------|--------------------------------|-----------|
+| `MYSQL_HOST`        | MySQL host                     | localhost |
+| `MYSQL_USER`        | MySQL user                     | root      |
+| `MYSQL_PASSWORD`    | MySQL password                 | (empty)   |
+| `MYSQL_DATABASE`    | Database name                  | bus_pass  |
+| `ADMIN_SECURITY_KEY`| Key required to register admin | Nova      |
+| `JWT_SECRET`        | Secret for JWT (optional)      | (dev default) |
 
-## Learn More
+## Scripts
 
-To learn more about Next.js, take a look at the following resources:
+| Command           | Description                |
+|-------------------|----------------------------|
+| `npm run dev`     | Start dev server           |
+| `npm run build`   | Production build           |
+| `npm run start`   | Start production server    |
+| `npm run clear-data` | Truncate all DB tables (fresh start) |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Tech Stack
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS, MySQL (mysql2), JWT (jose), bcrypt, Motion, GSAP.

@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Card, CardHeader, CardContent } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
+import ShinyText from "@/components/ShinyText";
 
 type Route = { id: number; name: string; daily_price: number; weekly_price: number };
 
@@ -64,7 +65,18 @@ export default function AddRoutePage() {
       <Link href="/admin" className="inline-block text-zinc-400 hover:text-white">
         ← Dashboard
       </Link>
-      <h1 className="text-2xl font-bold text-white">Add Route</h1>
+      <h1 className="text-2xl font-bold">
+        <ShinyText
+          text="Add Route"
+          color="#b5b5b5"
+          shineColor="#ffffff"
+          speed={2.5}
+          spread={120}
+          yoyo
+          pauseOnHover
+          className="text-2xl font-bold"
+        />
+      </h1>
 
       <Card className="max-w-md">
         <CardHeader>

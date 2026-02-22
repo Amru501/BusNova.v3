@@ -26,7 +26,6 @@ export async function GET() {
     );
     return NextResponse.json({ buses });
   } catch (err) {
-    console.error("Buses list error:", err);
     return NextResponse.json({ error: "Failed to fetch buses" }, { status: 500 });
   }
 }
@@ -51,7 +50,6 @@ export async function POST(request: NextRequest) {
     );
     return NextResponse.json({ success: true });
   } catch (err) {
-    console.error("Add bus error:", err);
     return NextResponse.json({ error: "Failed to add bus" }, { status: 500 });
   }
 }
