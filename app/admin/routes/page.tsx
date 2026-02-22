@@ -61,12 +61,10 @@ export default function AddRoutePage() {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center gap-4">
-        <Link href="/admin" className="text-zinc-400 hover:text-white">
-          ← Dashboard
-        </Link>
-        <h1 className="text-2xl font-bold text-white">Add Route</h1>
-      </div>
+      <Link href="/admin" className="inline-block text-zinc-400 hover:text-white">
+        ← Dashboard
+      </Link>
+      <h1 className="text-2xl font-bold text-white">Add Route</h1>
 
       <Card className="max-w-md">
         <CardHeader>
@@ -135,7 +133,7 @@ export default function AddRoutePage() {
             <div className="overflow-x-auto">
               <table className="w-full text-left text-sm">
                 <thead>
-                  <tr className="border-b border-zinc-700 text-zinc-400">
+                  <tr className="border-b border-white/10 text-zinc-400">
                     <th className="pb-3 pr-6 font-medium">Route</th>
                     <th className="pb-3 pr-6 font-medium">Daily</th>
                     <th className="pb-3 font-medium">Weekly</th>
@@ -143,7 +141,7 @@ export default function AddRoutePage() {
                 </thead>
                 <tbody>
                   {routes.map((r) => (
-                    <tr key={r.id} className="border-b border-zinc-700/50">
+                    <tr key={r.id} className="border-b border-white/10/50">
                       <td className="py-3 pr-6 font-medium text-white">{r.name}</td>
                       <td className="py-3 pr-6 text-zinc-400">₹{r.daily_price}</td>
                       <td className="py-3 text-zinc-400">₹{r.weekly_price}</td>

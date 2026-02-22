@@ -48,12 +48,10 @@ export default function AdminPassesPage() {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center gap-4">
-        <Link href="/admin" className="text-zinc-400 hover:text-white">
-          ← Dashboard
-        </Link>
-        <h1 className="text-2xl font-bold text-white">All Passes</h1>
-      </div>
+      <Link href="/admin" className="inline-block text-zinc-400 hover:text-white">
+        ← Dashboard
+      </Link>
+      <h1 className="text-2xl font-bold text-white">All Passes</h1>
 
       <Card>
         <CardHeader>
@@ -68,7 +66,7 @@ export default function AdminPassesPage() {
             <div className="overflow-x-auto">
               <table className="w-full text-left text-sm">
                 <thead>
-                  <tr className="border-b border-zinc-700 text-zinc-400">
+                  <tr className="border-b border-white/10 text-zinc-400">
                     <th className="pb-3 pr-4">ID</th>
                     <th className="pb-3 pr-4">User</th>
                     <th className="pb-3 pr-4">Route</th>
@@ -81,7 +79,7 @@ export default function AdminPassesPage() {
                 </thead>
                 <tbody>
                   {passes.map((p) => (
-                    <tr key={p.id} className="border-b border-zinc-700/50">
+                    <tr key={p.id} className="border-b border-white/10/50">
                       <td className="py-3 pr-4 text-zinc-300">{p.id}</td>
                       <td className="py-3 pr-4 text-zinc-300">
                         {p.user_name ?? p.user_email}

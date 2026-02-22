@@ -51,12 +51,10 @@ export default function MyPassPage() {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center gap-4">
-        <Link href="/student" className="text-zinc-400 hover:text-white">
-          ← Dashboard
-        </Link>
-        <h1 className="text-2xl font-bold text-white">My Pass</h1>
-      </div>
+      <Link href="/student" className="inline-block text-zinc-400 hover:text-white">
+        ← Dashboard
+      </Link>
+      <h1 className="text-2xl font-bold text-white">My Pass</h1>
 
       <div className="flex min-h-[40vh] flex-col items-center justify-center">
         {loading ? (

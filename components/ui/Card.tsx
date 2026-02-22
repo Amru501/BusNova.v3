@@ -1,4 +1,7 @@
+"use client";
+
 import type { HTMLAttributes } from "react";
+import SpotlightCard from "@/components/SpotlightCard";
 
 export function Card({
   className = "",
@@ -6,12 +9,9 @@ export function Card({
   ...props
 }: HTMLAttributes<HTMLDivElement>) {
   return (
-    <div
-      className={`rounded-xl border border-zinc-700/50 bg-zinc-800/50 shadow-xl ${className}`}
-      {...props}
-    >
+    <SpotlightCard className={`p-0 shadow-lg backdrop-blur-sm ${className}`} {...props}>
       {children}
-    </div>
+    </SpotlightCard>
   );
 }
 
@@ -21,7 +21,7 @@ export function CardHeader({
   ...props
 }: HTMLAttributes<HTMLDivElement>) {
   return (
-    <div className={`border-b border-zinc-700/50 px-6 py-4 ${className}`} {...props}>
+    <div className={`border-b border-white/5 px-6 py-4 ${className}`} {...props}>
       {children}
     </div>
   );

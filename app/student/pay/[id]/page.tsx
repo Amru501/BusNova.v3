@@ -65,7 +65,7 @@ export default function PaymentPage() {
   if (!pass) {
     return (
       <div className="space-y-6">
-        <Link href="/student" className="text-zinc-400 hover:text-white">
+        <Link href="/student" className="inline-block text-zinc-400 hover:text-white">
           ← Dashboard
         </Link>
         <p className="text-zinc-400">Loading pass...</p>
@@ -76,7 +76,7 @@ export default function PaymentPage() {
   if (pass.payment_status === "paid") {
     return (
       <div className="space-y-6">
-        <Link href="/student" className="text-zinc-400 hover:text-white">
+        <Link href="/student" className="inline-block text-zinc-400 hover:text-white">
           ← Dashboard
         </Link>
         <Card>
@@ -95,19 +95,17 @@ export default function PaymentPage() {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center gap-4">
-        <Link href="/student" className="text-zinc-400 hover:text-white">
-          ← Dashboard
-        </Link>
-        <h1 className="text-2xl font-bold text-white">Simulated Payment</h1>
-      </div>
+      <Link href="/student" className="inline-block text-zinc-400 hover:text-white">
+        ← Dashboard
+      </Link>
+      <h1 className="text-2xl font-bold text-white">Simulated Payment</h1>
 
       <Card className="max-w-md">
         <CardHeader>
           <h2 className="text-lg font-semibold text-white">Pay for pass</h2>
         </CardHeader>
         <CardContent className="space-y-4">
-          <div className="rounded-lg bg-zinc-800/80 p-4">
+          <div className="rounded-lg border border-white/5 bg-black/15 p-4">
             <p className="text-zinc-400">{pass.route_name}</p>
             <p className="text-lg font-semibold text-white">
               {pass.pass_type} pass — ₹{pass.amount}

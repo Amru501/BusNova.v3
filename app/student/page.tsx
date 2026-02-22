@@ -10,7 +10,7 @@ export default function StudentDashboard() {
 
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         <Link href="/student/my-pass" className="block">
-          <Card className="h-full transition hover:border-emerald-500/50 hover:bg-zinc-800/80">
+          <Card className="h-full transition hover:border-emerald-500/50 hover:bg-white/10">
             <CardHeader>
               <h2 className="text-lg font-semibold text-white">View My Pass</h2>
             </CardHeader>
@@ -23,7 +23,7 @@ export default function StudentDashboard() {
         </Link>
 
         <Link href="/student/request" className="block">
-          <Card className="h-full transition hover:border-emerald-500/50 hover:bg-zinc-800/80">
+          <Card className="h-full transition hover:border-emerald-500/50 hover:bg-white/10">
             <CardHeader>
               <h2 className="text-lg font-semibold text-white">Request for Pass</h2>
             </CardHeader>
@@ -36,7 +36,7 @@ export default function StudentDashboard() {
         </Link>
 
         <Link href="/student/buses" className="block">
-          <Card className="h-full transition hover:border-emerald-500/50 hover:bg-zinc-800/80">
+          <Card className="h-full transition hover:border-emerald-500/50 hover:bg-white/10">
             <CardHeader>
               <h2 className="text-lg font-semibold text-white">View All Buses</h2>
             </CardHeader>
@@ -49,7 +49,7 @@ export default function StudentDashboard() {
         </Link>
 
         <Link href="/student/drivers" className="block">
-          <Card className="h-full transition hover:border-emerald-500/50 hover:bg-zinc-800/80">
+          <Card className="h-full transition hover:border-emerald-500/50 hover:bg-white/10">
             <CardHeader>
               <h2 className="text-lg font-semibold text-white">View Drivers</h2>
             </CardHeader>

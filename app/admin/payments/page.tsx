@@ -32,12 +32,10 @@ export default function AdminPaymentsPage() {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center gap-4">
-        <Link href="/admin" className="text-zinc-400 hover:text-white">
-          ← Dashboard
-        </Link>
-        <h1 className="text-2xl font-bold text-white">All Payments</h1>
-      </div>
+      <Link href="/admin" className="inline-block text-zinc-400 hover:text-white">
+        ← Dashboard
+      </Link>
+      <h1 className="text-2xl font-bold text-white">All Payments</h1>
 
       <Card>
         <CardHeader>
@@ -52,7 +50,7 @@ export default function AdminPaymentsPage() {
             <div className="overflow-x-auto">
               <table className="w-full text-left text-sm">
                 <thead>
-                  <tr className="border-b border-zinc-700 text-zinc-400">
+                  <tr className="border-b border-white/10 text-zinc-400">
                     <th className="pb-3 pr-4">ID</th>
                     <th className="pb-3 pr-4">Pass</th>
                     <th className="pb-3 pr-4">User</th>
@@ -65,7 +63,7 @@ export default function AdminPaymentsPage() {
                 </thead>
                 <tbody>
                   {payments.map((py) => (
-                    <tr key={py.id} className="border-b border-zinc-700/50">
+                    <tr key={py.id} className="border-b border-white/10/50">
                       <td className="py-3 pr-4 text-zinc-300">{py.id}</td>
                       <td className="py-3 pr-4 text-zinc-300">
                         #{py.pass_id} {py.route_name && `· ${py.route_name}`}

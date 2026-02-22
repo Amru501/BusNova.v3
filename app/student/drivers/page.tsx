@@ -21,12 +21,10 @@ export default function DriversPage() {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center gap-4">
-        <Link href="/student" className="text-zinc-400 hover:text-white">
-          ← Dashboard
-        </Link>
-        <h1 className="text-2xl font-bold text-white">Drivers</h1>
-      </div>
+      <Link href="/student" className="inline-block text-zinc-400 hover:text-white">
+        ← Dashboard
+      </Link>
+      <h1 className="text-2xl font-bold text-white">Drivers</h1>
 
       <div className="flex min-h-[40vh] flex-col items-center justify-center">
         {loading ? (
@@ -42,14 +40,17 @@ export default function DriversPage() {
             {drivers.map((d) => (
               <Card key={d.id}>
                 <CardContent className="p-6">
-                  <p className="font-semibold text-white">{d.name}</p>
-                  <p className="mt-1 text-zinc-400">
+                  <p className="text-zinc-400">
+                    Name: <span className="font-semibold text-white">{d.name}</span>
+                  </p>
+                  <p className="mt-2 text-zinc-400">
+                    Phone:{" "}
                     {d.phone ? (
-                      <a href={`tel:${d.phone}`} className="hover:text-emerald-400">
+                      <a href={`tel:${d.phone}`} className="font-semibold text-white hover:text-emerald-400">
                         {d.phone}
                       </a>
                     ) : (
-                      "—"
+                      <span className="text-white">—</span>
                     )}
                   </p>
                 </CardContent>

@@ -14,7 +14,7 @@ export default function AdminLayout({
   children: React.ReactNode;
 }) {
   return (
-    <DashboardLayout title="Admin Dashboard" navItems={navItems} role="admin">
+    <DashboardLayout navItems={navItems} role="admin">
       {children}
     </DashboardLayout>
   );

@@ -67,12 +67,10 @@ export default function AddBusPage() {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center gap-4">
-        <Link href="/admin" className="text-zinc-400 hover:text-white">
-          ← Dashboard
-        </Link>
-        <h1 className="text-2xl font-bold text-white">Add Bus</h1>
-      </div>
+      <Link href="/admin" className="inline-block text-zinc-400 hover:text-white">
+        ← Dashboard
+      </Link>
+      <h1 className="text-2xl font-bold text-white">Add Bus</h1>
 
       <Card className="max-w-md">
         <CardHeader>
@@ -127,7 +125,7 @@ export default function AddBusPage() {
           {buses.length === 0 ? (
             <p className="text-zinc-400">No buses yet. Add one above.</p>
           ) : (
-            <ul className="divide-y divide-zinc-700">
+            <ul className="divide-y divide-white/10">
               {buses.map((b) => (
                 <li key={b.id} className="flex flex-wrap items-center justify-between gap-2 py-3 first:pt-0">
                   <span className="font-medium text-white">Bus {b.bus_number}</span>

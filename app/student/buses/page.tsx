@@ -21,12 +21,10 @@ export default function ViewBusesPage() {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center gap-4">
-        <Link href="/student" className="text-zinc-400 hover:text-white">
-          ← Dashboard
-        </Link>
-        <h1 className="text-2xl font-bold text-white">All Buses</h1>
-      </div>
+      <Link href="/student" className="inline-block text-zinc-400 hover:text-white">
+        ← Dashboard
+      </Link>
+      <h1 className="text-2xl font-bold text-white">All Buses</h1>
 
       <Card>
         <CardHeader>
@@ -38,7 +36,7 @@ export default function ViewBusesPage() {
           ) : buses.length === 0 ? (
             <p className="text-zinc-400">No buses found.</p>
           ) : (
-            <ul className="divide-y divide-zinc-700">
+            <ul className="divide-y divide-white/10">
               {buses.map((b) => (
                 <li key={b.id} className="flex flex-wrap items-center justify-between gap-2 py-3 first:pt-0">
                   <div>

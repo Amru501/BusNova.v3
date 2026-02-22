@@ -14,7 +14,7 @@ export default function StudentLayout({
   children: React.ReactNode;
 }) {
   return (
-    <DashboardLayout title="Student Dashboard" navItems={navItems} role="student">
+    <DashboardLayout navItems={navItems} role="student">
       {children}
     </DashboardLayout>
   );

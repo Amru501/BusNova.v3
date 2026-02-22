@@ -82,12 +82,10 @@ export default function RequestPassPage() {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center gap-4">
-        <Link href="/student" className="text-zinc-400 hover:text-white">
-          ← Dashboard
-        </Link>
-        <h1 className="text-2xl font-bold text-white">Request New Pass</h1>
-      </div>
+      <Link href="/student" className="inline-block text-zinc-400 hover:text-white">
+        ← Dashboard
+      </Link>
+      <h1 className="text-2xl font-bold text-white">Request New Pass</h1>
 
       <Card className="max-w-md">
         <CardHeader>
@@ -103,15 +101,15 @@ export default function RequestPassPage() {
               <button
                 type="button"
                 onClick={() => setRouteOpen((o) => !o)}
-                className="w-full rounded-lg border border-zinc-600 bg-zinc-800 px-4 py-2.5 text-left text-zinc-100 placeholder-zinc-500 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
+                className="w-full rounded-lg border border-white/15 bg-zinc-900/70 px-4 py-2.5 text-left text-zinc-100 backdrop-blur-sm focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
               >
                 {selectedRoute ? selectedRoute.name : "Choose a route"}
               </button>
               {routeOpen && (
-                <div className="absolute top-full left-0 z-10 mt-1 max-h-60 w-full overflow-auto rounded-lg border border-zinc-600 bg-zinc-800 shadow-xl">
+                <div className="absolute top-full left-0 z-10 mt-1 max-h-60 w-full overflow-auto rounded-lg border border-white/15 bg-zinc-900/90 shadow-xl backdrop-blur-md">
                   <table className="w-full text-left text-sm">
-                    <thead className="sticky top-0 bg-zinc-800">
-                      <tr className="border-b border-zinc-700 text-zinc-400">
+                    <thead className="sticky top-0 bg-zinc-900/95 backdrop-blur-sm">
+                      <tr className="border-b border-white/10 text-zinc-400">
                         <th className="px-4 py-2.5 font-medium">Route</th>
                         <th className="px-4 py-2.5 font-medium">Daily</th>
                         <th className="px-4 py-2.5 font-medium">Weekly</th>
@@ -125,8 +123,8 @@ export default function RequestPassPage() {
                             setRouteId(String(r.id));
                             setRouteOpen(false);
                           }}
-                          className={`cursor-pointer border-b border-zinc-700/50 last:border-0 ${
-                            r.id === Number(routeId) ? "bg-zinc-700/50" : "hover:bg-zinc-700/30"
+                          className={`cursor-pointer border-b border-white/5 last:border-0 ${
+                            r.id === Number(routeId) ? "bg-white/10" : "hover:bg-white/5"
                           }`}
                         >
                           <td className="px-4 py-2.5 font-medium text-white">{r.name}</td>

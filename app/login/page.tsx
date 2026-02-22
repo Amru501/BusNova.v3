@@ -42,10 +42,14 @@ function LoginForm() {
   const title = role === "admin" ? "Admin Login" : "Student Login";
 
   return (
-    <div className="min-h-screen bg-zinc-950 flex flex-col items-center justify-center px-4">
-      <div className="w-full max-w-sm">
-        <h1 className="text-2xl font-bold text-white mb-6 text-center">{title}</h1>
-        <form onSubmit={handleSubmit} className="space-y-4">
+    <div className="min-h-screen flex flex-col px-4">
+      <Link href="/" className="inline-block pt-6 text-zinc-400 hover:text-white">
+        ← Back to home
+      </Link>
+      <div className="flex flex-1 flex-col items-center justify-center">
+        <div className="auth-card w-full max-w-sm p-8">
+          <h1 className="text-2xl font-bold text-white mb-6 text-center">{title}</h1>
+          <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label htmlFor="email" className="mb-1.5 block text-sm font-medium text-zinc-400">
               Email
@@ -87,11 +91,7 @@ function LoginForm() {
             Register
           </Link>
         </p>
-        <p className="mt-4 text-center">
-          <Link href="/" className="text-sm text-zinc-500 hover:text-zinc-400">
-            ← Back to home
-          </Link>
-        </p>
+        </div>
       </div>
     </div>
   );
@@ -99,7 +99,7 @@ function LoginForm() {
 
 export default function LoginPage() {
   return (
-    <Suspense fallback={<div className="min-h-screen bg-zinc-950 flex items-center justify-center text-zinc-400">Loading...</div>}>
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center text-zinc-400">Loading...</div>}>
       <LoginForm />
     </Suspense>
   );
