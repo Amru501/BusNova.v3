@@ -1,8 +1,30 @@
 "use client";
 
 import Link from "next/link";
-import { Card, CardHeader, CardContent } from "@/components/ui/Card";
 import ShinyText from "@/components/ShinyText";
+
+const strips = [
+  {
+    href: "/student/my-pass",
+    title: "View My Pass",
+    desc: "See your pass status, type and route.",
+  },
+  {
+    href: "/student/request",
+    title: "Request for Pass",
+    desc: "Choose a route and pass type. Price is set per route by admin.",
+  },
+  {
+    href: "/student/buses",
+    title: "View All Buses",
+    desc: "See all available buses and their routes.",
+  },
+  {
+    href: "/student/drivers",
+    title: "View Drivers",
+    desc: "See driver names and contact numbers.",
+  },
+];
 
 export default function StudentDashboard() {
   return (
@@ -20,61 +42,27 @@ export default function StudentDashboard() {
         />
       </h1>
 
-      <div className="dashboard-blocks">
-        <div className="dashboard-twine" aria-hidden />
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 relative z-10">
-          <Link href="/student/my-pass" className="block">
-            <Card className="dashboard-card h-full transition hover:border-emerald-500/40">
-              <CardHeader>
-                <h2 className="text-lg font-semibold text-white">View My Pass</h2>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-zinc-400">
-                  See your pass status, type and route.
-                </p>
-              </CardContent>
-            </Card>
+      <div className="dashboard-strips">
+        {strips.map(({ href, title, desc }) => (
+          <Link key={href} href={href} className="dashboard-strip">
+            <div className="dashboard-strip-content">
+              <h2 className="dashboard-strip-title">{title}</h2>
+              <p className="dashboard-strip-desc">{desc}</p>
+            </div>
+            <svg
+              className="dashboard-strip-arrow"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden
+            >
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
           </Link>
-
-          <Link href="/student/request" className="block">
-            <Card className="dashboard-card h-full transition hover:border-emerald-500/40">
-              <CardHeader>
-                <h2 className="text-lg font-semibold text-white">Request for Pass</h2>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-zinc-400">
-                  Choose a route and pass type. Price is set per route by admin.
-                </p>
-              </CardContent>
-            </Card>
-          </Link>
-
-          <Link href="/student/buses" className="block">
-            <Card className="dashboard-card h-full transition hover:border-emerald-500/40">
-              <CardHeader>
-                <h2 className="text-lg font-semibold text-white">View All Buses</h2>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-zinc-400">
-                  See all available buses and their routes.
-                </p>
-              </CardContent>
-            </Card>
-          </Link>
-
-          <Link href="/student/drivers" className="block">
-            <Card className="dashboard-card h-full transition hover:border-emerald-500/40">
-              <CardHeader>
-                <h2 className="text-lg font-semibold text-white">View Drivers</h2>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-zinc-400">
-                  See driver names and contact numbers.
-                </p>
-              </CardContent>
-            </Card>
-          </Link>
-        </div>
+        ))}
       </div>
     </div>
   );

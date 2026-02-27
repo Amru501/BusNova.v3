@@ -31,24 +31,24 @@ export function DashboardLayout({
   ];
 
   return (
-    <div className="min-h-screen">
-      <header className="sticky top-0 z-10 w-full">
-        <div className="flex min-h-[4rem] w-full items-center px-4 pt-4">
+    <div className="min-h-screen min-h-[100dvh] flex flex-col">
+      <header className="sticky top-0 z-10 w-full shrink-0 bg-[var(--overlay)]/80 backdrop-blur-sm">
+        <div className="flex min-h-[4rem] w-full items-center px-3 sm:px-4 pt-3 sm:pt-4 pb-2">
           <PillNav
             logo={logo}
             logoAlt={role === "admin" ? "Admin" : "Student"}
             items={items}
             activeHref={pathname}
-            baseColor="#000"
-            pillColor="#fff"
-            pillTextColor="#000"
-            hoveredPillTextColor="#fff"
+            baseColor="rgba(245, 158, 11, 0.9)"
+            pillColor="rgba(24, 24, 27, 0.85)"
+            pillTextColor="#fff"
+            hoveredPillTextColor="#000"
             onLogout={handleLogout}
             initialLoadAnimation={true}
           />
         </div>
       </header>
-      <main className="mx-auto max-w-6xl px-4 py-8">{children}</main>
+      <main className="mx-auto w-full max-w-6xl flex-1 px-3 sm:px-4 py-6 sm:py-8 overflow-x-hidden">{children}</main>
     </div>
   );
 }

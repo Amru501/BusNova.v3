@@ -12,6 +12,8 @@ export type PassRow = {
   payment_status: "pending" | "paid" | "failed";
   approval_status: "pending" | "approved" | "rejected";
   is_active: boolean;
+  active_at: string | null;
+  expires_at: string | null;
   created_at: string;
   route_name?: string;
   user_name?: string;
@@ -26,8 +28,16 @@ export async function GET() {
     }
 
     if (session.role === "student") {
+      // Backfill active_at/expires_at for passes created before expiry was added (approved+active but NULL)
+      await query(
+        `UPDATE passes SET
+           active_at = COALESCE(active_at, created_at),
+           expires_at = COALESCE(expires_at, DATE_ADD(COALESCE(active_at, created_at), INTERVAL 6 MONTH))
+         WHERE approval_status = 'approved' AND is_active = 1
+           AND (active_at IS NULL OR expires_at IS NULL)`
+      );
       const passes = await query<PassRow[]>(
-        `SELECT p.id, p.user_id, p.route_id, p.pass_type, p.amount, p.payment_status, p.approval_status, p.is_active, p.created_at,
+        `SELECT p.id, p.user_id, p.route_id, p.pass_type, p.amount, p.payment_status, p.approval_status, p.is_active, p.active_at, p.expires_at, p.created_at,
          r.name AS route_name
          FROM passes p
          JOIN routes r ON r.id = p.route_id
@@ -38,8 +48,16 @@ export async function GET() {
       return NextResponse.json({ passes });
     }
 
+    // Backfill active_at/expires_at for passes created before expiry was added
+    await query(
+      `UPDATE passes SET
+         active_at = COALESCE(active_at, created_at),
+         expires_at = COALESCE(expires_at, DATE_ADD(COALESCE(active_at, created_at), INTERVAL 6 MONTH))
+       WHERE approval_status = 'approved' AND is_active = 1
+         AND (active_at IS NULL OR expires_at IS NULL)`
+    );
     const passes = await query<PassRow[]>(
-      `SELECT p.id, p.user_id, p.route_id, p.pass_type, p.amount, p.payment_status, p.approval_status, p.is_active, p.created_at,
+      `SELECT p.id, p.user_id, p.route_id, p.pass_type, p.amount, p.payment_status, p.approval_status, p.is_active, p.active_at, p.expires_at, p.created_at,
        r.name AS route_name, u.name AS user_name, u.email AS user_email
        FROM passes p
        JOIN routes r ON r.id = p.route_id
@@ -71,6 +89,18 @@ export async function POST(request: NextRequest) {
     if (!passType) {
       return NextResponse.json(
         { error: "pass_type must be daily or weekly" },
+        { status: 400 }
+      );
+    }
+    // One pass per user until current pass expires
+    const existingActive = await query<{ id: number }[]>(
+      `SELECT id FROM passes WHERE user_id = ? AND is_active = 1
+       AND (expires_at IS NULL OR expires_at > NOW()) LIMIT 1`,
+      [session.userId]
+    );
+    if (existingActive.length > 0) {
+      return NextResponse.json(
+        { error: "You already own a pass" },
         { status: 400 }
       );
     }

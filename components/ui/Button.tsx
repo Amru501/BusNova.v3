@@ -9,13 +9,13 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 const variants: Record<Variant, string> = {
   primary:
-    "bg-emerald-600/90 text-white hover:bg-emerald-500/90 focus:ring-emerald-500 backdrop-blur-sm",
+    "bg-amber-500 text-black hover:bg-amber-400 focus:ring-amber-500 backdrop-blur-sm",
   secondary:
-    "bg-zinc-700/80 text-zinc-100 hover:bg-zinc-600/80 focus:ring-zinc-500 backdrop-blur-sm",
+    "bg-zinc-700/80 text-zinc-100 hover:bg-zinc-600/80 focus:ring-amber-500 backdrop-blur-sm",
   danger:
     "bg-red-600/90 text-white hover:bg-red-500/90 focus:ring-red-500 backdrop-blur-sm",
   ghost:
-    "bg-white/5 text-zinc-300 hover:bg-white/10 focus:ring-zinc-500 backdrop-blur-sm",
+    "bg-white/5 text-zinc-300 hover:bg-white/10 focus:ring-amber-500 backdrop-blur-sm",
 };
 
 export function Button({

@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import { useRouter, useParams } from "next/navigation";
 import Link from "next/link";
-import { Card, CardHeader, CardContent } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
 import ShinyText from "@/components/ShinyText";
 import { Select } from "@/components/ui/Select";
@@ -66,7 +65,7 @@ export default function PaymentPage() {
   if (!pass) {
     return (
       <div className="space-y-6">
-        <Link href="/student" className="inline-block text-zinc-400 hover:text-white">
+        <Link href="/student" className="inline-block text-zinc-400 hover:text-amber-400">
           ← Dashboard
         </Link>
         <p className="text-zinc-400">Loading pass...</p>
@@ -77,26 +76,26 @@ export default function PaymentPage() {
   if (pass.payment_status === "paid") {
     return (
       <div className="space-y-6">
-        <Link href="/student" className="inline-block text-zinc-400 hover:text-white">
+        <Link href="/student" className="inline-block text-zinc-400 hover:text-amber-400">
           ← Dashboard
         </Link>
-        <Card>
-          <CardContent className="py-6">
-            <p className="text-emerald-400">This pass is already paid.</p>
+        <div className="dashboard-panel">
+          <div className="dashboard-panel-body py-6">
+            <p className="text-amber-400">This pass is already paid.</p>
             <Link href="/student">
               <Button variant="secondary" className="mt-4">
                 Back to Dashboard
               </Button>
             </Link>
-          </CardContent>
-        </Card>
+          </div>
+        </div>
       </div>
     );
   }
 
   return (
     <div className="space-y-6">
-      <Link href="/student" className="inline-block text-zinc-400 hover:text-white">
+      <Link href="/student" className="inline-block text-zinc-400 hover:text-amber-400">
         ← Dashboard
       </Link>
       <h1 className="text-2xl font-bold">
@@ -112,11 +111,9 @@ export default function PaymentPage() {
         />
       </h1>
 
-      <Card className="max-w-md">
-        <CardHeader>
-          <h2 className="text-lg font-semibold text-white">Pay for pass</h2>
-        </CardHeader>
-        <CardContent className="space-y-4">
+      <div className="dashboard-panel max-w-md">
+        <div className="dashboard-panel-header">Pay for pass</div>
+        <div className="dashboard-panel-body space-y-4">
           <div className="rounded-lg border border-white/5 bg-black/15 p-4">
             <p className="text-zinc-400">{pass.route_name}</p>
             <p className="text-lg font-semibold text-white">
@@ -146,8 +143,8 @@ export default function PaymentPage() {
           >
             Pay ₹{pass.amount}
           </Button>
-        </CardContent>
-      </Card>
+        </div>
+      </div>
     </div>
   );
 }

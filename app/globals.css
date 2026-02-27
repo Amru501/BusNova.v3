@@ -9,6 +9,8 @@
   --overlay: rgba(15, 15, 18, 0.82);
   --card-bg: rgba(39, 39, 42, 0.75);
   --card-border: rgba(63, 63, 70, 0.6);
+  --accent-yellow: rgba(245, 158, 11, 0.9);
+  --accent-yellow-muted: rgba(245, 158, 11, 0.4);
   --radius: 0.625rem;
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
@@ -86,8 +88,13 @@
   --radius-4xl: calc(var(--radius) + 16px);
 }
 
+html {
+  overflow-x: hidden;
+}
+
 body {
   min-height: 100vh;
+  min-height: 100dvh;
   position: relative;
 }
 
@@ -102,65 +109,160 @@ body::before {
   z-index: -1;
 }
 
-/* Back to home link: small grey box matching background */
+/* Back to home: yellow 3D arrow only */
 .back-to-home-box {
-  display: inline-block;
-  padding: 0.5rem 0.875rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
   border-radius: 0.75rem;
   background: var(--card-bg);
-  border: 1px solid var(--card-border);
+  border: 1px solid rgba(245, 158, 11, 0.25);
+  transition: border-color 0.2s, background 0.2s;
+}
+.back-to-home-box:hover {
+  border-color: rgba(245, 158, 11, 0.5);
+  background: rgba(39, 39, 42, 0.9);
+}
+.back-to-home-arrow {
+  display: block;
+  filter:
+    drop-shadow(2px 2px 3px rgba(0, 0, 0, 0.6))
+    drop-shadow(-1px -1px 1px rgba(251, 191, 36, 0.5));
+  transition: filter 0.2s;
+}
+.back-to-home-box:hover .back-to-home-arrow {
+  filter:
+    drop-shadow(2px 2px 3px rgba(0, 0, 0, 0.5))
+    drop-shadow(-1px -1px 2px rgba(253, 230, 138, 0.6));
 }
 
-/* Auth pages: form block matching background, no hover effect */
+/* Auth pages: form block matching background, slight yellow-tinted border */
 .auth-card {
   background: var(--card-bg);
-  border: 1px solid var(--card-border);
+  border: 1px solid rgba(245, 158, 11, 0.2);
   border-radius: 1rem;
   box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
   backdrop-filter: blur(12px);
 }
 
-/* Dashboard: solid blocks with 3D shadow matching background, twine interconnects */
-.dashboard-blocks {
-  position: relative;
-  padding: 1.5rem;
+/* Tactile / 3D perspective for SpotlightCard */
+.perspective-1000 {
+  perspective: 1000px;
 }
 
-.dashboard-twine {
-  position: absolute;
-  inset: -4px;
-  pointer-events: none;
-  border-radius: 1.25rem;
-  border: 3px solid rgba(139, 115, 85, 0.7);
-  box-shadow:
-    inset 0 0 0 1px rgba(160, 130, 95, 0.4),
-    0 0 0 1px rgba(80, 60, 40, 0.3);
+/* Dashboard: link-strip layout (no cards) */
+.dashboard-strips {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
-.dashboard-twine::before {
-  content: "";
-  position: absolute;
-  inset: -6px;
-  border-radius: 1.5rem;
-  border: 1px dashed rgba(139, 115, 85, 0.35);
-  pointer-events: none;
+@media (min-width: 640px) {
+  .dashboard-strips {
+    gap: 0.75rem;
+  }
 }
 
-.dashboard-card {
-  background: rgba(28, 28, 32, 0.98) !important;
-  border: 1px solid rgba(63, 63, 70, 0.7) !important;
-  box-shadow:
-    0 12px 28px rgba(0, 0, 0, 0.45),
-    0 6px 14px rgba(25, 12, 12, 0.35),
-    inset 0 1px 0 rgba(255, 255, 255, 0.04) !important;
-  backdrop-filter: none;
+.dashboard-strip {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  border-radius: 0.75rem;
+  background: rgba(24, 24, 27, 0.85);
+  border: 1px solid rgba(63, 63, 70, 0.4);
+  border-left: 4px solid rgba(245, 158, 11, 0.9);
+  color: inherit;
+  text-decoration: none;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+  outline: none;
 }
 
-.dashboard-card:hover {
-  box-shadow:
-    0 16px 36px rgba(0, 0, 0, 0.5),
-    0 8px 18px rgba(25, 12, 12, 0.4),
-    inset 0 1px 0 rgba(255, 255, 255, 0.06) !important;
+.dashboard-strip:hover {
+  background: rgba(39, 39, 42, 0.95);
+  border-color: rgba(245, 158, 11, 0.5);
+  border-left-color: rgb(245, 158, 11);
+  transform: translateX(4px);
+}
+
+.dashboard-strip:focus-visible {
+  box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.5);
+}
+
+.dashboard-strip-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.dashboard-strip-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: rgb(255, 255, 255);
+  margin: 0;
+}
+
+.dashboard-strip-desc {
+  font-size: 0.875rem;
+  color: rgba(161, 161, 170, 0.95);
+  margin: 0.25rem 0 0 0;
+}
+
+.dashboard-strip-arrow {
+  flex-shrink: 0;
+  width: 1.25rem;
+  height: 1.25rem;
+  color: rgba(245, 158, 11, 0.8);
+  transition: transform 0.2s ease;
+}
+
+.dashboard-strip:hover .dashboard-strip-arrow {
+  color: rgb(245, 158, 11);
+  transform: translateX(4px);
+}
+
+/* Dashboard panel: same strip style for content blocks (forms, tables, lists) */
+.dashboard-panel {
+  border-radius: 0.75rem;
+  background: rgba(24, 24, 27, 0.85);
+  border: 1px solid rgba(63, 63, 70, 0.4);
+  border-left: 4px solid rgba(245, 158, 11, 0.9);
+  overflow: hidden;
+}
+
+.dashboard-panel-header {
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: rgb(255, 255, 255);
+}
+
+.dashboard-panel-body {
+  padding: 1rem 1.25rem;
+}
+
+.dashboard-strip-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  background: rgba(30, 30, 33, 0.7);
+  border-left: 3px solid rgba(245, 158, 11, 0.5);
+  margin-bottom: 0.5rem;
+}
+
+.dashboard-strip-row:last-child {
+  margin-bottom: 0;
 }
 
 .dark {

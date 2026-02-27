@@ -47,6 +47,7 @@ CREATE TABLE buses (
 );
 
 -- Passes: user selects route (not bus); amount comes from route's price
+-- A pass expires exactly 6 months after it becomes active (when approved).
 CREATE TABLE passes (
   id INT AUTO_INCREMENT PRIMARY KEY,
   user_id INT,
@@ -56,6 +57,8 @@ CREATE TABLE passes (
   payment_status ENUM('pending','paid','failed') DEFAULT 'pending',
   approval_status ENUM('pending','approved','rejected') DEFAULT 'pending',
   is_active BOOLEAN DEFAULT FALSE,
+  active_at TIMESTAMP NULL COMMENT 'When the pass became active (upon approval)',
+  expires_at TIMESTAMP NULL COMMENT 'Exactly 6 months after active_at',
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   FOREIGN KEY (user_id) REFERENCES users(id),
   FOREIGN KEY (route_id) REFERENCES routes(id)

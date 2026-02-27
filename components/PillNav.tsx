@@ -245,9 +245,9 @@ const PillNav = ({
   const homeHref = linkItems[0]?.href ?? "#";
 
   return (
-    <div className="absolute left-0 right-0 top-[1em] z-[1000] w-full px-0">
+    <div className="absolute left-0 right-0 top-[0.5em] sm:top-[1em] z-[1000] w-full px-0 max-w-[100vw] box-border">
       <nav
-        className={`box-border flex w-full items-center justify-between ${className}`}
+        className={`box-border flex w-full items-center justify-between gap-2 ${className}`}
         aria-label="Primary"
         style={cssVars}
       >
@@ -410,13 +410,13 @@ const PillNav = ({
 
       <div
         ref={mobileMenuRef}
-        className="absolute left-4 right-4 top-[3em] z-[998] origin-top rounded-[27px] shadow-[0_8px_32px_rgba(0,0,0,0.12)] md:hidden"
+        className="absolute left-2 right-2 sm:left-4 sm:right-4 top-[2.75rem] sm:top-[3em] z-[998] origin-top rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.12)] md:hidden max-h-[min(70vh,400px)] overflow-y-auto"
         style={{
           ...cssVars,
           background: "var(--base, #f0f0f0)",
         }}
       >
-        <ul className="m-0 flex list-none flex-col gap-[3px] p-[3px]">
+        <ul className="m-0 flex list-none flex-col gap-[3px] p-2 sm:p-[3px]">
           {items.map((item) => {
             const defaultStyle: React.CSSProperties = {
               background: "var(--pill-bg, #fff)",

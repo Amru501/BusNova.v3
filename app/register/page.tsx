@@ -54,17 +54,29 @@ function RegisterForm() {
   const title = role === "admin" ? "Register as Admin" : "Register as Student";
 
   return (
-    <div className="min-h-screen flex flex-col px-4 py-12">
-      <span className="inline-block">
+    <div className="min-h-screen min-h-[100dvh] flex flex-col px-4 py-6 sm:py-12">
+      <span className="inline-block shrink-0">
         <Link
           href="/"
-          className="back-to-home-box text-zinc-400 hover:text-white transition-colors"
+          aria-label="Back to home"
+          className="back-to-home-box inline-flex touch-manipulation text-amber-500"
         >
-          ← Back to home
+          <svg
+            className="back-to-home-arrow size-7"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden
+          >
+            <path d="M19 12H5M12 19l-7-7 7-7" />
+          </svg>
         </Link>
       </span>
-      <div className="flex flex-1 flex-col items-center justify-center">
-        <div className="auth-card w-full max-w-sm p-8">
+      <div className="flex flex-1 flex-col items-center justify-center py-6 w-full max-w-full overflow-auto">
+        <div className="auth-card w-full max-w-sm p-6 sm:p-8 mx-2">
           <h1 className="text-2xl font-bold text-white mb-6 text-center">{title}</h1>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
@@ -161,7 +173,7 @@ function RegisterForm() {
           Already have an account?{" "}
           <Link
             href={`/login?role=${role}`}
-            className="text-emerald-400 hover:underline"
+            className="text-amber-400 hover:underline"
           >
             Login
           </Link>

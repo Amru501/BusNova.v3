@@ -1,7 +1,16 @@
 import { NextRequest, NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
 import { query } from "@/lib/db";
-import { createToken, setAuthCookie } from "@/lib/auth";
+import { createToken } from "@/lib/auth";
+
+const COOKIE_NAME = "bus_pass_token";
+const COOKIE_OPTIONS = {
+  httpOnly: true,
+  secure: process.env.NODE_ENV === "production",
+  sameSite: "lax" as const,
+  path: "/",
+  maxAge: 60 * 60 * 24 * 7, // 7 days
+};
 
 type UserRow = { id: number; name: string; email: string; phone: string | null; password: string; role: "student" | "admin" };
 
@@ -44,9 +53,8 @@ export async function POST(request: NextRequest) {
       email: user.email,
       role: user.role,
     });
-    await setAuthCookie(token);
 
-    return NextResponse.json({
+    const response = NextResponse.json({
       user: {
         id: user.id,
         name: user.name,
@@ -55,6 +63,8 @@ export async function POST(request: NextRequest) {
         role: user.role,
       },
     });
+    response.cookies.set(COOKIE_NAME, token, COOKIE_OPTIONS);
+    return response;
   } catch (err) {
     return NextResponse.json(
       { error: "Login failed" },
