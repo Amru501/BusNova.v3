@@ -5,7 +5,6 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --bg-image: url("/images/6300032.jpg");
   --overlay: rgba(15, 15, 18, 0.82);
   --card-bg: rgba(39, 39, 42, 0.75);
   --card-border: rgba(63, 63, 70, 0.6);
@@ -90,23 +89,14 @@
 
 html {
   overflow-x: hidden;
+  background: #0a0a0c;
 }
 
 body {
   min-height: 100vh;
   min-height: 100dvh;
   position: relative;
-}
-
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background-image: linear-gradient(var(--overlay), var(--overlay)), var(--bg-image);
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  z-index: -1;
+  background: transparent;
 }
 
 /* Back to home: yellow 3D arrow only */

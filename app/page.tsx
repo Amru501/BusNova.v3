@@ -1,9 +1,11 @@
 import Link from "next/link";
 import SpotlightCard from "@/components/SpotlightCard";
+import HolographicBackgroundAnimated from "@/components/HolographicBackgroundAnimated";
 
 export default function Home() {
   return (
-    <div className="min-h-screen min-h-[100dvh] flex flex-col items-center justify-center px-4 sm:px-6 py-8 sm:py-16 w-full max-w-full box-border">
+    <div className="min-h-screen min-h-[100dvh] flex flex-col items-center justify-center px-4 sm:px-6 py-8 sm:py-16 w-full max-w-full box-border relative">
+      <HolographicBackgroundAnimated />
       <SpotlightCard className="w-full max-w-md shadow-lg backdrop-blur-sm mx-auto">
         <h1 className="mb-2 text-center text-2xl sm:text-3xl font-bold tracking-tight text-white sm:text-4xl">
           BusNova.v3

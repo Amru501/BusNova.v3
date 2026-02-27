@@ -18,6 +18,13 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    if (!phone || String(phone).trim() === "") {
+      return NextResponse.json(
+        { error: "Phone is required" },
+        { status: 400 }
+      );
+    }
+
     if (role !== "student" && role !== "admin") {
       return NextResponse.json({ error: "Invalid role" }, { status: 400 });
     }
@@ -33,12 +40,6 @@ export async function POST(request: NextRequest) {
       if (!validAdminType) {
         return NextResponse.json(
           { error: "Admin type must be checking, driver, or administrator" },
-          { status: 400 }
-        );
-      }
-      if (!phone || String(phone).trim() === "") {
-        return NextResponse.json(
-          { error: "Phone is required for admin registration" },
           { status: 400 }
         );
       }

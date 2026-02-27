@@ -92,15 +92,15 @@ export async function POST(request: NextRequest) {
         { status: 400 }
       );
     }
-    // One pass per user until current pass expires
-    const existingActive = await query<{ id: number }[]>(
-      `SELECT id FROM passes WHERE user_id = ? AND is_active = 1
+    // One pass per user until that pass expires (block if pending or active + not expired)
+    const existingPass = await query<{ id: number }[]>(
+      `SELECT id FROM passes WHERE user_id = ? AND approval_status != 'rejected'
        AND (expires_at IS NULL OR expires_at > NOW()) LIMIT 1`,
       [session.userId]
     );
-    if (existingActive.length > 0) {
+    if (existingPass.length > 0) {
       return NextResponse.json(
-        { error: "You already own a pass" },
+        { error: "You already have a pass (pending or active). You can request a new one after it expires." },
         { status: 400 }
       );
     }

@@ -33,7 +33,7 @@ function RegisterForm() {
         body: JSON.stringify({
           name,
           email,
-          phone: phone || undefined,
+          phone,
           password,
           role,
           ...(role === "admin" && { admin_type: adminType, security_key: securityKey }),
@@ -107,7 +107,7 @@ function RegisterForm() {
           </div>
           <div>
             <label htmlFor="phone" className="mb-1.5 block text-sm font-medium text-zinc-400">
-              Phone {role === "admin" ? "(required)" : "(optional)"}
+              Phone
             </label>
             <Input
               id="phone"
@@ -115,7 +115,7 @@ function RegisterForm() {
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
               placeholder="+1234567890"
-              required={role === "admin"}
+              required
             />
           </div>
           {role === "admin" && (

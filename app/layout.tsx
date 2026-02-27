@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import HolographicBackground from "@/components/HolographicBackground";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,6 +29,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} min-h-screen text-zinc-100 antialiased text-base overflow-x-hidden`}
       >
+        <HolographicBackground />
         {children}
       </body>
     </html>

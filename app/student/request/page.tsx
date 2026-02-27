@@ -50,6 +50,7 @@ type Pass = {
   id: number;
   is_active: boolean;
   expires_at: string | null;
+  approval_status: string;
 };
 
 export default function RequestPassPage() {
@@ -74,12 +75,13 @@ export default function RequestPassPage() {
       .then((res) => res.json())
       .then((data) => {
         const passes: Pass[] = data.passes ?? [];
-        const active = passes.some(
+        // One pass per user until it expires: block if any pass is pending or active (not expired)
+        const hasExisting = passes.some(
           (p) =>
-            p.is_active &&
+            p.approval_status !== "rejected" &&
             (!p.expires_at || new Date(p.expires_at) > new Date())
         );
-        setHasActivePass(active);
+        setHasActivePass(hasExisting);
       })
       .catch(() => setHasActivePass(false));
   }, []);
@@ -173,7 +175,7 @@ export default function RequestPassPage() {
             className="p-8 md:p-10 border border-white/10 bg-zinc-900/80 backdrop-blur-xl shadow-2xl max-w-lg"
             spotlightColor="rgba(245, 158, 11, 0.15)"
           >
-            <p className="text-lg font-semibold text-white mb-2">You already own a pass.</p>
+            <p className="text-lg font-semibold text-white mb-2">You already have a pass (pending or active).</p>
             <p className="text-zinc-500 text-sm mb-6">
               You can request a new pass only after your current pass expires.
             </p>
